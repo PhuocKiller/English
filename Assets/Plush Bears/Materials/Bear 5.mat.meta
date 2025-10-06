@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 2e43794d2f7f8e346b5ef8678ba0e60f
+timeCreated: 1530659446
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 122158
+  packageName: Plush Bears
+  packageVersion: 1.0
+  assetPath: Assets/Plush Bears/Materials/Bear 5.mat
+  uploadId: 257507

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 3b73b9a02ff33ec4fa105aaf70c0bc19
+timeCreated: 1530659956
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 122158
+  packageName: Plush Bears
+  packageVersion: 1.0
+  assetPath: Assets/Plush Bears/Prefabs/Bear 7.prefab
+  uploadId: 257507
