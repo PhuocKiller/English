@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,7 +11,9 @@ public class PlayerController : MonoBehaviour
     Ray ray; RaycastHit hit;
     BlockManager[] blocks;
     public Vector3Int myPos;
-    public AllBlocksManager allBlocksManager;
+    AllBlocksManager allBlocksManager;
+    AllBridgesManager allBridgesManager;
+    public UIManager uiManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -18,6 +21,8 @@ public class PlayerController : MonoBehaviour
        animator = GetComponent<Animator>();
        blocks = FindObjectsByType<BlockManager>(FindObjectsSortMode.InstanceID);
        myPos=new Vector3Int(0,0,0);
+        allBlocksManager=FindAnyObjectByType<AllBlocksManager>();
+       allBridgesManager = FindAnyObjectByType<AllBridgesManager>();
     }
     void Update()
     {
@@ -69,7 +74,17 @@ public class PlayerController : MonoBehaviour
         {
             isMoving = false;
             animator.SetBool("isWalk", false);
-            allBlocksManager.DestroyBlocks(myPos.x, myPos.z);   
+            allBlocksManager.DestroyBlocks(myPos.x, myPos.z);
+            allBridgesManager.DestroyBridges(myPos.x, myPos.z);
+            CheckWin(myPos);
+        }
+    }
+
+    private void CheckWin(Vector3 pos)
+    {
+        if(pos==new Vector3(2, 0, 2))
+        {
+            uiManager.winPanelManager.transform.gameObject.SetActive(true);
         }
     }
 }
