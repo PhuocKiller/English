@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6126a5313fe83c549aad30f1e80760f1, type: 2}
+  - {fileID: 2100000, guid: 2b45d1ee250437f4c8170008692ec1ff, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,6 +99,7 @@ GameObject:
   m_Component:
   - component: {fileID: 92561539320134521}
   - component: {fileID: 7038381187202814924}
+  - component: {fileID: 6188751323735109932}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -145,6 +146,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6188751323735109932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3851443545397460043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 339eff5f1d12f6e4e86130fad98e4b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BlockManager
+  isChosing: 0
+  posX: 0
+  posY: 0
+  mat1: {fileID: 2100000, guid: ab9a641f2363d3546ad27cb32150bae8, type: 2}
+  mat2: {fileID: 2100000, guid: 2b45d1ee250437f4c8170008692ec1ff, type: 2}
 --- !u!1 &5823825512527416295
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +229,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6126a5313fe83c549aad30f1e80760f1, type: 2}
+  - {fileID: 2100000, guid: 9cbbe5528eeaccd4b867b14b89434da4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -300,7 +318,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6126a5313fe83c549aad30f1e80760f1, type: 2}
+  - {fileID: 2100000, guid: ab9a641f2363d3546ad27cb32150bae8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
