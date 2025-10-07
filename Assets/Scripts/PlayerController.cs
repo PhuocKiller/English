@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -23,6 +25,7 @@ public class PlayerController : MonoBehaviour
        myPos=new Vector3Int(0,0,0);
         allBlocksManager=FindAnyObjectByType<AllBlocksManager>();
        allBridgesManager = FindAnyObjectByType<AllBridgesManager>();
+        canInteract = true;
     }
     void Update()
     {
@@ -39,7 +42,7 @@ public class PlayerController : MonoBehaviour
                 block.isChosing = true;
             }
         }
-        if (Input.GetMouseButtonDown(1)) canInteract = true;
+        //if (Input.GetMouseButtonDown(1)) canInteract = true;
         if (canInteract)
         {   
             if (Physics.Raycast(ray, out hit) )
@@ -49,8 +52,8 @@ public class PlayerController : MonoBehaviour
                 {
                     destinationPoint = new Vector3(hit.transform.position.x, 0, hit.transform.position.z);
                     myPos = new Vector3Int(block.posX, 0, block.posZ);
-                    isMoving = true;
-                    canInteract = false;
+                   FindAnyObjectByType<UIManager>().transform.GetChild(2).gameObject.SetActive(true);
+                   canInteract = false;
                 }
             }
                 
@@ -74,12 +77,17 @@ public class PlayerController : MonoBehaviour
         {
             isMoving = false;
             animator.SetBool("isWalk", false);
-            allBlocksManager.DestroyBlocks(myPos.x, myPos.z);
-            allBridgesManager.DestroyBridges(myPos.x, myPos.z);
-            CheckWin(myPos);
+            StartCoroutine(DelayInteract());
         }
     }
-
+    IEnumerator DelayInteract()
+    {
+        yield return new WaitForSeconds(1f);
+        canInteract = true;
+        allBlocksManager.DestroyBlocks(myPos.x, myPos.z);
+        allBridgesManager.DestroyBridges(myPos.x, myPos.z);
+        CheckWin(myPos);
+    }
     private void CheckWin(Vector3 pos)
     {
         if(pos==new Vector3(2, 0, 2))

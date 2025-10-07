@@ -160,8 +160,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlockManager
   isChosing: 0
   posX: 0
-  posY: 0
-  mat1: {fileID: 2100000, guid: ab9a641f2363d3546ad27cb32150bae8, type: 2}
+  posZ: 0
+  mat1: {fileID: 2100000, guid: 6126a5313fe83c549aad30f1e80760f1, type: 2}
   mat2: {fileID: 2100000, guid: 2b45d1ee250437f4c8170008692ec1ff, type: 2}
 --- !u!1 &5823825512527416295
 GameObject:
@@ -229,7 +229,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9cbbe5528eeaccd4b867b14b89434da4, type: 2}
+  - {fileID: 2100000, guid: 6126a5313fe83c549aad30f1e80760f1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -318,7 +318,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ab9a641f2363d3546ad27cb32150bae8, type: 2}
+  - {fileID: 2100000, guid: 6126a5313fe83c549aad30f1e80760f1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
