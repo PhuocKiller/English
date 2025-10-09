@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
                 {
                     destinationPoint = new Vector3(hit.transform.position.x, 0, hit.transform.position.z);
                     myPos = new Vector3Int(block.posX, 0, block.posZ);
-                   FindAnyObjectByType<UIManager>().transform.GetChild(2).gameObject.SetActive(true);
+                    ShowPanelQuestion(CheckQuestionType(block));
                    canInteract = false;
                 }
             }
@@ -87,6 +87,25 @@ public class PlayerController : MonoBehaviour
         allBlocksManager.DestroyBlocks(myPos.x, myPos.z);
         allBridgesManager.DestroyBridges(myPos.x, myPos.z);
         CheckWin(myPos);
+    }
+    public QuestionType CheckQuestionType(BlockManager block)
+    {
+        int sum = block.posX + block.posZ;
+        if (sum == 4) { return QuestionType.Match; }
+        else if (sum % 2 == 0)
+        {
+            return QuestionType.Multiple;
+        }
+        else
+        {
+            return QuestionType.Fill;
+        }
+        
+    }
+    public void ShowPanelQuestion(QuestionType questionType)
+    {
+        FindAnyObjectByType<UIManager>().transform.GetChild
+            (questionType==QuestionType.Multiple?2: questionType == QuestionType.Fill? 3: 4).gameObject.SetActive(true);
     }
     private void CheckWin(Vector3 pos)
     {

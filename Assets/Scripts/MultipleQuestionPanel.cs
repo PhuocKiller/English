@@ -5,7 +5,7 @@ using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
-public class QuestionPanel : MonoBehaviour
+public class MultipleQuestionPanel : MonoBehaviour
 {
     public int checkAns, stuAns;
     UIManager uiManager;
@@ -36,7 +36,6 @@ public class QuestionPanel : MonoBehaviour
         while (multipleQuestions.Contains(i));
 
         multipleQuestions.Add(i); // lưu lại để lần sau không trùng
-        Debug.Log($"Chọn câu hỏi thứ {i}");
         question.text = multipleSOs[i].question;
         answerA.text=multipleSOs[i].answerA;
         answerB.text = multipleSOs[i].answerB;

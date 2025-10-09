@@ -106,7 +106,7 @@ public class ButtonManager : MonoBehaviour,
             }
             isSelected = true;
             SetColor(colors.selectedColor);
-            FindAnyObjectByType<QuestionPanel>().stuAns=index;
+            FindAnyObjectByType<MultipleQuestionPanel>().stuAns=index;
         }
         else
         {
