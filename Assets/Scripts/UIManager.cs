@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class UIManager : MonoBehaviour
     public LosePanelManager losePanelManager;
     public PlayerController playerController;
     public CheckPanel checkPanel;
+    [SerializeField] Image[] heartLives;
     public void PlayAgain()
     {
         SceneManager.LoadScene(0);
@@ -15,5 +17,11 @@ public class UIManager : MonoBehaviour
     {
        
     }
-    
+    public void UpdateHealth(int lives)
+    {
+        for (int i = 2; i >= lives; i--)
+        {
+            heartLives[i].enabled = false;
+        }
+    }
 }

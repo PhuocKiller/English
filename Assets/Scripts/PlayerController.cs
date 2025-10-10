@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     AllBlocksManager allBlocksManager;
     AllBridgesManager allBridgesManager;
     public UIManager uiManager;
+    public int lives = 3;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
         allBlocksManager=FindAnyObjectByType<AllBlocksManager>();
        allBridgesManager = FindAnyObjectByType<AllBridgesManager>();
         canInteract = true;
+        uiManager.UpdateHealth(lives);
     }
     void Update()
     {
@@ -113,5 +115,11 @@ public class PlayerController : MonoBehaviour
         {
             uiManager.winPanelManager.transform.gameObject.SetActive(true);
         }
+    }
+    public void LostHealth()
+    {
+        lives -= 1;
+        uiManager.UpdateHealth(lives);
+        animator.SetTrigger("damaged");
     }
 }
