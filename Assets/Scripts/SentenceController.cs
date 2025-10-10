@@ -1,11 +1,12 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SentenceController : MonoBehaviour
 {
     public MatchQuestionPanel matchQuestionPanel;
     public TextMeshProUGUI textSentence;
-    public int stuAns;
+    public string stuAns;
     private void Awake()
     {
         matchQuestionPanel= FindAnyObjectByType<MatchQuestionPanel>();
@@ -17,18 +18,15 @@ public class SentenceController : MonoBehaviour
       matchQuestionPanel.mouseFollow.ChangeText(this);
         matchQuestionPanel.indexSwap1=transform.GetSiblingIndex();
        GetComponent<CanvasGroup>().blocksRaycasts = false;
-        Debug.Log("onbegindrag");
     }
     public void OnEndDrag()
     {
         matchQuestionPanel.mouseFollow.ToggleMouseFollow(false);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-        Debug.Log("onenddrag");
     }
     public void OnPointerClick()
     {
         
-        Debug.Log("pointerclick");
     }
     public void OnDrop()
     {
@@ -37,6 +35,13 @@ public class SentenceController : MonoBehaviour
     }
     public void OnPointerUp()
     {
-        Debug.Log("pointerup");
+    }
+    public void OnPointerEnter()
+    {
+        GetComponent<Image>().color = Color.green;
+    }
+    public void OnPointerExit()
+    {
+        GetComponent<Image>().color = Color.white;
     }
 }

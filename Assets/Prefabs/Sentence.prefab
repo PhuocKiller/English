@@ -172,6 +172,38 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4943031545572884049}
+          m_TargetAssemblyTypeName: SentenceController, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4943031545572884049}
+          m_TargetAssemblyTypeName: SentenceController, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &4943031545572884049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TextController
   matchQuestionPanel: {fileID: 0}
   textSentence: {fileID: 0}
-  stuAns: 1
+  stuAns: 3
 --- !u!225 &8621855379693656305
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -211,7 +243,7 @@ GameObject:
   - component: {fileID: 2571488246394824241}
   - component: {fileID: 3787664506678361848}
   m_Layer: 5
-  m_Name: Sentence
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,7 +296,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: fd
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

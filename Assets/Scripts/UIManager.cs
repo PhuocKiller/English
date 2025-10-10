@@ -13,8 +13,7 @@ public class UIManager : MonoBehaviour
     }
     private void Awake()
     {
-       // playerController = FindAnyObjectByType<PlayerController>();
-      //  checkPanel=FindAnyObjectByType<CheckPanel>();
+       
     }
     
 }
