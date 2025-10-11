@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     CharacterController characterController;
-    Animator animator;
+    public Animator animator;
     public bool isMoving;
     public bool canInteract;
     Vector3 destinationPoint, direction;
@@ -58,7 +58,6 @@ public class PlayerController : MonoBehaviour
                    canInteract = false;
                 }
             }
-                
         }
         else
         {
@@ -79,10 +78,10 @@ public class PlayerController : MonoBehaviour
         {
             isMoving = false;
             animator.SetBool("isWalk", false);
-            StartCoroutine(DelayInteract());
+            StartCoroutine(DelayBeforeGoing());
         }
     }
-    IEnumerator DelayInteract()
+    IEnumerator DelayBeforeGoing()
     {
         yield return new WaitForSeconds(1f);
         canInteract = true;
@@ -90,6 +89,12 @@ public class PlayerController : MonoBehaviour
         allBridgesManager.DestroyBridges(myPos.x, myPos.z);
         CheckWin(myPos);
     }
+    public IEnumerator DelayInteract()
+    {
+        yield return new WaitForSeconds(1f);
+        canInteract = true;
+    }
+
     public QuestionType CheckQuestionType(BlockManager block)
     {
         int sum = block.posX + block.posZ;

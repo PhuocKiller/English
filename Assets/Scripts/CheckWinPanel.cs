@@ -23,11 +23,13 @@ public class CheckWinPanel : MonoBehaviour
         if (rightAnswers==4)
         {
             uIManager.winPanelManager.gameObject.SetActive(true);
-            Debug.Log("win");
+            FindAnyObjectByType<PlayerController>().animator.SetTrigger("dance");
         }
         else
         {
-            
+
+            FindAnyObjectByType<GameManager>().ActivePlayer();
+            FindAnyObjectByType<MatchQuestionPanel>().checkMatch[0].transform.parent.gameObject.SetActive(false);
         }
         gameObject.SetActive(false);
     }

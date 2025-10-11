@@ -10,11 +10,12 @@ public class GameManager : MonoBehaviour
     }
     public void PlayerMove()
     {
-        playerController.isMoving = true;
+        playerController.animator.SetTrigger("hello");
+       // playerController.isMoving = true;
     }
     public void ActivePlayer()
     {
-        playerController.canInteract = true;
+        
         Collider[] hitColliders = Physics.OverlapSphere(playerController.transform.position, 1f);
         foreach (Collider collider in hitColliders)
         {
@@ -24,6 +25,10 @@ public class GameManager : MonoBehaviour
                 playerController.myPos = new Vector3Int(block.posX, 0, block.posZ);
                 break;
             }
+        }
+        if (playerController.lives>1)
+        {
+            playerController.canInteract = true;
         }
         playerController.LostHealth();
     }

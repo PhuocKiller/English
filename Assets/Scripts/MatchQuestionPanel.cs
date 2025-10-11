@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
@@ -49,6 +50,8 @@ public class MatchQuestionPanel : MonoBehaviour
         {
             leftMatch[j].GetComponentInChildren<TextMeshProUGUI>().text = matchSOs[i].left[j];
             sentences[j].GetComponentInChildren<TextMeshProUGUI>().text = matchSOs[i].right[j];
+            int indexSen = sentences[j].transform.GetSiblingIndex();
+            sentences[j].stuAns = indexSen == 0 ? "A" : indexSen == 1 ? "B" : indexSen == 2 ? "C" : "D";
             checkAns[j].GetComponent<TextMeshProUGUI>().text = matchSOs[i].checkAns[j];
         }
     }
@@ -56,6 +59,7 @@ public class MatchQuestionPanel : MonoBehaviour
     {
         checkWinPanel.gameObject.SetActive(true);
         int rightAnswers = 0;
+        checkMatch[0].transform.parent.gameObject.SetActive(true);
         for (int j = 0; j < 4; j++)
         {
             checkMatch[j].SetActive(true);
