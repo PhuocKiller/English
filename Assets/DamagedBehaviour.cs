@@ -3,6 +3,11 @@ using UnityEngine;
 public class DamagedBehaviour : StateMachineBehaviour
 {
     PlayerController playerController;
+    UIManager UIManager;
+    private void Awake()
+    {
+        UIManager = FindAnyObjectByType<UIManager>();
+    }
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
@@ -19,9 +24,10 @@ public class DamagedBehaviour : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         playerController = animator.gameObject.GetComponent<PlayerController>();
-        if(playerController.lives==0)
+        UIManager.UpdateHealth(playerController.lives);
+        if (playerController.lives==0)
         {
-            playerController.animator.SetTrigger("v");
+            UIManager.losePanelManager.gameObject.SetActive(true);
         }
     }
 

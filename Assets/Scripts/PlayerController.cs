@@ -119,12 +119,13 @@ public class PlayerController : MonoBehaviour
         if(pos==new Vector3(2, 0, 2))
         {
             uiManager.winPanelManager.transform.gameObject.SetActive(true);
+            FindAnyObjectByType<PlayerController>().animator.SetTrigger("dance");
         }
     }
     public void LostHealth()
     {
         lives -= 1;
-        uiManager.UpdateHealth(lives);
+       // uiManager.UpdateHealth(lives);
         animator.SetTrigger("damaged");
     }
 }

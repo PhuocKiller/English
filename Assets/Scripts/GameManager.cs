@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     public void PlayerMove()
     {
         playerController.animator.SetTrigger("hello");
-       // playerController.isMoving = true;
     }
     public void ActivePlayer()
     {
@@ -29,6 +28,9 @@ public class GameManager : MonoBehaviour
         if (playerController.lives>1)
         {
             playerController.canInteract = true;
+        }
+        else
+        {
         }
         playerController.LostHealth();
     }

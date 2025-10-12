@@ -22,8 +22,7 @@ public class CheckWinPanel : MonoBehaviour
 
         if (rightAnswers==4)
         {
-            uIManager.winPanelManager.gameObject.SetActive(true);
-            FindAnyObjectByType<PlayerController>().animator.SetTrigger("dance");
+            FindAnyObjectByType<GameManager>().PlayerMove();
         }
         else
         {
