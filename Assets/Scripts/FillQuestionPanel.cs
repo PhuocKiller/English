@@ -55,11 +55,12 @@ public class FillQuestionPanel : MonoBehaviour
     {
         if (stuAns == "")
         {
-            Debug.Log("error");
+            FindAnyObjectByType<AudioManager>().ErrorSound();
         }
         else
         {
-           uiManager.checkPanel.transform.gameObject.SetActive(true);
+            FindAnyObjectByType<AudioManager>().ButtonClick1();
+          uiManager.checkPanel.transform.gameObject.SetActive(true);
            uiManager.checkPanel.CheckAnswer(string.Equals(checkAns.Trim(), stuAns.Trim(), StringComparison.OrdinalIgnoreCase));
            ShowAnswer();
         }

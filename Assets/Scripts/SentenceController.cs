@@ -32,6 +32,7 @@ public class SentenceController : MonoBehaviour
     {
         matchQuestionPanel.indexSwap2 = transform.GetSiblingIndex();
         matchQuestionPanel.SwapAnswer();
+        FindAnyObjectByType<AudioManager>().ButtonClick1();
     }
     public void OnPointerUp()
     {

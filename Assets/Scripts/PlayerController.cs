@@ -36,26 +36,38 @@ public class PlayerController : MonoBehaviour
         {
             item.isChosing = false;
         }
-        if (Physics.Raycast(ray, out hit))
+        /*if (Physics.Raycast(ray, out hit))
         {
             BlockManager block = hit.transform.GetComponent<BlockManager>();
             if (block != null &&(block.posX +block.posZ- myPos.x - myPos.z)==1)
             {
-                block.isChosing = true;
+                
             }
-        }
-        //if (Input.GetMouseButtonDown(1)) canInteract = true;
+        }*/
         if (canInteract)
         {   
             if (Physics.Raycast(ray, out hit) )
             {
                 BlockManager block = hit.transform.GetComponent<BlockManager>();
-                if (Input.GetMouseButtonDown(0) && block!= null && (block.posX + block.posZ - myPos.x - myPos.z) == 1)
+                if (block != null && (block.posX + block.posZ - myPos.x - myPos.z) == 1)
                 {
-                    destinationPoint = new Vector3(hit.transform.position.x, 0, hit.transform.position.z);
-                    myPos = new Vector3Int(block.posX, 0, block.posZ);
-                    ShowPanelQuestion(CheckQuestionType(block));
-                   canInteract = false;
+                    block.isChosing = true;
+                }
+                if (Input.GetMouseButtonDown(0) )
+                {
+                    if(block != null && (block.posX + block.posZ - myPos.x - myPos.z) == 1)
+                    {
+                        destinationPoint = new Vector3(hit.transform.position.x, 0, hit.transform.position.z);
+                        myPos = new Vector3Int(block.posX, 0, block.posZ);
+                        ShowPanelQuestion(CheckQuestionType(block));
+                        canInteract = false;
+                        FindAnyObjectByType<AudioManager>().ButtonClick1();
+                    }
+                    else
+                    {
+                        FindAnyObjectByType<AudioManager>().ErrorSound();
+                    }
+                    
                 }
             }
         }
