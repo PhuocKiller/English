@@ -9,11 +9,11 @@ public class SentenceController : MonoBehaviour
     public string stuAns;
     private void Awake()
     {
-        matchQuestionPanel= FindAnyObjectByType<MatchQuestionPanel>();
-        textSentence=GetComponentInChildren<TextMeshProUGUI>();
+        
     }
     public void OnBeginDrag()
     {
+        if (!matchQuestionPanel.canInteract) return;
        matchQuestionPanel.mouseFollow.ToggleMouseFollow(true);
       matchQuestionPanel.mouseFollow.ChangeText(this);
         matchQuestionPanel.indexSwap1=transform.GetSiblingIndex();
@@ -21,6 +21,7 @@ public class SentenceController : MonoBehaviour
     }
     public void OnEndDrag()
     {
+        if (!matchQuestionPanel.canInteract) return;
         matchQuestionPanel.mouseFollow.ToggleMouseFollow(false);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
@@ -30,6 +31,7 @@ public class SentenceController : MonoBehaviour
     }
     public void OnDrop()
     {
+        if (!matchQuestionPanel.canInteract) return;
         matchQuestionPanel.indexSwap2 = transform.GetSiblingIndex();
         matchQuestionPanel.SwapAnswer();
         FindAnyObjectByType<AudioManager>().ButtonClick1();
@@ -39,10 +41,12 @@ public class SentenceController : MonoBehaviour
     }
     public void OnPointerEnter()
     {
+        if (!matchQuestionPanel.canInteract) return;
         GetComponent<Image>().color = Color.green;
     }
     public void OnPointerExit()
     {
+        if (!matchQuestionPanel.canInteract) return;
         GetComponent<Image>().color = Color.white;
     }
 }

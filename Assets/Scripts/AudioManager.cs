@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
     {
         musicSource.clip = theme[0];
         musicSource.loop = true;
-        musicSource.Play();
+        //musicSource.Play();
         musicSource.volume = 0.1f;
     }
     public void PlaySound(AudioClip clip, bool isLoop = false)

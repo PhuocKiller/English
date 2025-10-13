@@ -15,6 +15,7 @@ public class MatchQuestionPanel : MonoBehaviour
     private List<int> matchQuestions = new List<int>();
     public Sprite checkSpriteTrue, checkSpriteFalse;
     public CheckWinPanel checkWinPanel;
+    public bool canInteract;
     public void SwapAnswer()
     {
         string swapText=sentences[indexSwap1].textSentence.text;
@@ -29,9 +30,14 @@ public class MatchQuestionPanel : MonoBehaviour
     }
     private void OnEnable()
     {
+
+    }
+    public void InteractPanel()
+    {
+        if (canInteract) return;
+        canInteract = true;
         LoadQuestion();
     }
-
     private void LoadQuestion()
     {
         if (matchQuestions.Count >= matchSOs.Length)
@@ -48,7 +54,9 @@ public class MatchQuestionPanel : MonoBehaviour
         matchQuestions.Add(i); // lưu lại để lần sau không trùng
         for (int j=0; j<4; j++)
         {
+            leftMatch[j].transform.GetChild(0).gameObject.SetActive(true);
             leftMatch[j].GetComponentInChildren<TextMeshProUGUI>().text = matchSOs[i].left[j];
+            sentences[j].transform.GetChild(0).gameObject.SetActive(true);
             sentences[j].GetComponentInChildren<TextMeshProUGUI>().text = matchSOs[i].right[j];
             int indexSen = sentences[j].transform.GetSiblingIndex();
             sentences[j].stuAns = indexSen == 0 ? "A" : indexSen == 1 ? "B" : indexSen == 2 ? "C" : "D";
@@ -57,6 +65,7 @@ public class MatchQuestionPanel : MonoBehaviour
     }
     public void FinishBtn()
     {
+        if (!canInteract) return;
         checkWinPanel.gameObject.SetActive(true);
         int rightAnswers = 0;
         checkMatch[0].transform.parent.gameObject.SetActive(true);

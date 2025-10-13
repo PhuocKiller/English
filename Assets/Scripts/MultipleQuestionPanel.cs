@@ -50,21 +50,19 @@ public class MultipleQuestionPanel : MonoBehaviour
     }
     IEnumerator ShowTextDelay(TextMeshProUGUI textTMP, string soText, int i)
     {
-        textTMP.text = "";
-        int j = 0;
-        foreach ( char c in soText)
-        {
-            j++;
-            textTMP.text += c;
-            yield return new WaitForSeconds(0.05f);
-        }
+        textTMP.text = soText;
+        yield return new WaitForSeconds(3);
         ShowAnswer(i);
     }
     public void ShowAnswer(int i)
     {
+        answerA.gameObject.SetActive(true);
         answerA.text = multipleSOs[i].answerA;
+        answerB.gameObject.SetActive(true);
         answerB.text = multipleSOs[i].answerB;
+        answerC.gameObject.SetActive(true);
         answerC.text = multipleSOs[i].answerC;
+        answerD.gameObject.SetActive(true);
         answerD.text = multipleSOs[i].answerD;
     }
 
