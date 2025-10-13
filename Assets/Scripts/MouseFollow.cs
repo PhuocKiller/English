@@ -30,7 +30,6 @@ public class MouseFollow : MonoBehaviour
     }
     public void ChangeText(SentenceController text)
     {
-        Debug.Log(text.textSentence.text);
         textMouseFollow.text= text.textSentence.text;
     }
 }
