@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -36,11 +37,9 @@ public class MultipleQuestionPanel : MonoBehaviour
         while (multipleQuestions.Contains(i));
 
         multipleQuestions.Add(i); // lưu lại để lần sau không trùng
-        question.text = multipleSOs[i].question;
-        answerA.text=multipleSOs[i].answerA;
-        answerB.text = multipleSOs[i].answerB;
-        answerC.text = multipleSOs[i].answerC;
-        answerD.text = multipleSOs[i].answerD;
+        //question.text = multipleSOs[i].question;
+        
+        StartCoroutine(ShowTextDelay(question, multipleSOs[i].question,i));
         checkAns = multipleSOs[i].answer;
         stuAns = -1;
         foreach (var item in FindObjectsByType<ButtonManager>(FindObjectsSortMode.None))
@@ -48,6 +47,25 @@ public class MultipleQuestionPanel : MonoBehaviour
             item.isSelected = false; // reset trạng thái logic
             item.SetColor(item.colors.normalColor); // reset màu
         }
+    }
+    IEnumerator ShowTextDelay(TextMeshProUGUI textTMP, string soText, int i)
+    {
+        textTMP.text = "";
+        int j = 0;
+        foreach ( char c in soText)
+        {
+            j++;
+            textTMP.text += c;
+            yield return new WaitForSeconds(0.05f);
+        }
+        ShowAnswer(i);
+    }
+    public void ShowAnswer(int i)
+    {
+        answerA.text = multipleSOs[i].answerA;
+        answerB.text = multipleSOs[i].answerB;
+        answerC.text = multipleSOs[i].answerC;
+        answerD.text = multipleSOs[i].answerD;
     }
 
     public void CheckAnswer()
