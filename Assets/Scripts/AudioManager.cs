@@ -3,14 +3,14 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioClip walking, hello, sad,dance, click1, click2,error,victory;
+    public AudioClip walking, hello, sad,dance, click1, click2,error,victory,lose;
     public AudioClip[] theme;
     public AudioSource musicSource, soundSource, playerSource;
     public float musicVolume, soundVolume;
     [SerializeField] Scrollbar musicScrollBar, soundScrollBar;
     private void Start()
     {
-      //  PlayThemeSource(0, 0.1f);
+      PlayThemeSource(0, 0.1f);
     }
     public void PlayGameSound(AudioClip clip, bool isLoop = false)
     {
@@ -52,5 +52,6 @@ public class AudioManager : MonoBehaviour
         musicSource.clip = theme[indexTheme];
         musicSource.Play();
         musicSource.volume = volume;
+        musicSource.loop = isLoop;
     }
 }

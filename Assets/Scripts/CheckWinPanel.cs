@@ -22,17 +22,6 @@ public class CheckWinPanel : MonoBehaviour
     }
     public void Continue()
     {
-
-        if (rightAnswers == 4)
-        {
-          //  FindAnyObjectByType<GameManager>().PlayerMove();
-        }
-        else
-        {
-
-          //  FindAnyObjectByType<GameManager>().ActivePlayer();
-            
-        }
         FindAnyObjectByType<MatchQuestionPanel>().checkMatch[0].transform.parent.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }

@@ -117,9 +117,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            return QuestionType.Match;
+            return QuestionType.Multiple;
         }
-        
     }
     public void ShowPanelQuestion(QuestionType questionType)
     {
@@ -141,7 +140,6 @@ public class PlayerController : MonoBehaviour
     public void LostHealth()
     {
         lives -= 1;
-       // uiManager.UpdateHealth(lives);
         animator.SetTrigger("damaged");
     }
 }

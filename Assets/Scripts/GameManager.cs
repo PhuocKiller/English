@@ -1,13 +1,17 @@
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class GameManager : MonoBehaviour
 {
+    public PlayerController playerPrefab;
     public PlayerController playerController;
     public bool trueFalse;
     private void Awake()
     {
-        playerController = FindAnyObjectByType<PlayerController>();
+      //  playerController = FindAnyObjectByType<PlayerController>();
+    }
+    public void CreatePlayer()
+    {
+        playerController=Instantiate(playerPrefab);
     }
     public void PlayerMove()
     {

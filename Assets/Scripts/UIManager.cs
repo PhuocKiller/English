@@ -30,4 +30,9 @@ public class UIManager : MonoBehaviour
             heartLives[i].enabled = false;
         }
     }
+    public void ToggleFullScreen()
+    {
+        Screen.fullScreen = !Screen.fullScreen;
+        Debug.Log("vo");
+    }
 }
