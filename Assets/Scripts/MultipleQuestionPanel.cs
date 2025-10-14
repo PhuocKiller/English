@@ -51,7 +51,7 @@ public class MultipleQuestionPanel : MonoBehaviour
     IEnumerator ShowTextDelay(TextMeshProUGUI textTMP, string soText, int i)
     {
         textTMP.text = soText;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(6);
         ShowAnswer(i);
     }
     public void ShowAnswer(int i)
