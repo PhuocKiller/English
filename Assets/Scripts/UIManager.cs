@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,6 +12,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image[] heartLives;
     public void PlayAgain()
     {
+        StartCoroutine(DelayLoadScene());
+    }
+    IEnumerator DelayLoadScene()
+    {
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(0);
     }
     private void Awake()

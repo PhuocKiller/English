@@ -30,7 +30,12 @@ public class MatchQuestionPanel : MonoBehaviour
     }
     private void OnEnable()
     {
-
+        canInteract = false;
+        for (int j = 0; j < 4; j++)
+        {
+            leftMatch[j].transform.GetChild(0).gameObject.SetActive(false);
+            sentences[j].transform.GetChild(0).gameObject.SetActive(false);
+        }
     }
     public void InteractPanel()
     {

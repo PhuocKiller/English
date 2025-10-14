@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MultipleQuestionPanel : MonoBehaviour
 {
@@ -21,6 +22,14 @@ public class MultipleQuestionPanel : MonoBehaviour
     private void OnEnable()
     {
         LoadQuestion();
+        for (int j = 0; j < buttons.Length; j++)
+        {
+            buttons[j].GetComponent<Button>().interactable = false;
+        }
+        answerA.gameObject.SetActive(false);
+        answerB.gameObject.SetActive(false);
+        answerC.gameObject.SetActive(false);
+        answerD.gameObject.SetActive(false);
     }
 
     private void LoadQuestion()
@@ -51,11 +60,15 @@ public class MultipleQuestionPanel : MonoBehaviour
     IEnumerator ShowTextDelay(TextMeshProUGUI textTMP, string soText, int i)
     {
         textTMP.text = soText;
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(5);
         ShowAnswer(i);
     }
     public void ShowAnswer(int i)
     {
+        for (int j = 0; j < buttons.Length; j++)
+        {
+            buttons[j].GetComponent<Button>().interactable = true;
+        }
         answerA.gameObject.SetActive(true);
         answerA.text = multipleSOs[i].answerA;
         answerB.gameObject.SetActive(true);

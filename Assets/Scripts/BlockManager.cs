@@ -33,5 +33,6 @@ public class BlockManager : MonoBehaviour
     void Update()
     {
         transform.GetChild(0).GetComponent<MeshRenderer>().material = isChosing ? mat2:mat1;
+        transform.GetChild(1).GetComponent<MeshRenderer>().material = isChosing ? mat2 : mat1;
     }
 }

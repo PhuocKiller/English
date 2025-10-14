@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public Vector3Int myPos;
     AllBlocksManager allBlocksManager;
     AllBridgesManager allBridgesManager;
-    public UIManager uiManager;
+    UIManager uiManager;
     public int lives = 3;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -24,9 +24,9 @@ public class PlayerController : MonoBehaviour
        animator = GetComponent<Animator>();
        blocks = FindObjectsByType<BlockManager>(FindObjectsSortMode.InstanceID);
        myPos=new Vector3Int(0,0,0);
-        allBlocksManager=FindAnyObjectByType<AllBlocksManager>();
+        uiManager=FindAnyObjectByType<UIManager>();
+        allBlocksManager =FindAnyObjectByType<AllBlocksManager>();
        allBridgesManager = FindAnyObjectByType<AllBridgesManager>();
-        canInteract = true;
         uiManager.UpdateHealth(lives);
     }
     void Update()
@@ -132,6 +132,7 @@ public class PlayerController : MonoBehaviour
         {
             uiManager.winPanelManager.transform.gameObject.SetActive(true);
             FindAnyObjectByType<PlayerController>().animator.SetTrigger("dance");
+            canInteract=false;
         }
     }
     public void LostHealth()
