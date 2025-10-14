@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MultipleSO
   question: How old is he?
   answerA: 'bfg rgr '
-  answerB: rg r
+  answerB: r<u>g<u>r
   answerC: gr
   answerD: ty
   answer: 2

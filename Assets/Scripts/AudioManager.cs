@@ -3,35 +3,38 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioClip walking, hello, sad,dance, click1, click2,error;
+    public AudioClip walking, hello, sad,dance, click1, click2,error,victory;
     public AudioClip[] theme;
     public AudioSource musicSource, soundSource, playerSource;
     public float musicVolume, soundVolume;
     [SerializeField] Scrollbar musicScrollBar, soundScrollBar;
     private void Start()
     {
-        musicSource.clip = theme[0];
-        musicSource.loop = true;
-        //musicSource.Play();
-        musicSource.volume = 0.1f;
+      //  PlayThemeSource(0, 0.1f);
     }
-    public void PlaySound(AudioClip clip, bool isLoop = false)
+    public void PlayGameSound(AudioClip clip, bool isLoop = false)
     {
         soundSource.clip = clip;
         soundSource.loop = isLoop;
         soundSource.Play();
     }
+    public void PlayerPlayerSound(AudioClip clip, bool isLoop = false)
+    {
+        playerSource.clip = clip;
+        playerSource.loop = isLoop;
+        playerSource.Play();
+    }
     public void ButtonClick1()
     {
-        PlaySound(click1);
+        PlayGameSound(click1);
     }
     public void ButtonClick2()
     {
-        PlaySound(click2);
+        PlayGameSound(click2);
     }
     public void ErrorSound()
     {
-        PlaySound(error);
+        PlayGameSound(error);
     }
     
     public void Walking(bool isWalking)
@@ -43,5 +46,11 @@ public class AudioManager : MonoBehaviour
             playerSource.Play();
         }
         else playerSource.Stop();
+    }
+    public void PlayThemeSource(int indexTheme,float volume, bool isLoop=true)
+    {
+        musicSource.clip = theme[indexTheme];
+        musicSource.Play();
+        musicSource.volume = volume;
     }
 }

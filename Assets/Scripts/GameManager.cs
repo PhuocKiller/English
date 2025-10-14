@@ -4,6 +4,7 @@ using static UnityEditor.PlayerSettings;
 public class GameManager : MonoBehaviour
 {
     public PlayerController playerController;
+    public bool trueFalse;
     private void Awake()
     {
         playerController = FindAnyObjectByType<PlayerController>();
@@ -33,5 +34,16 @@ public class GameManager : MonoBehaviour
         {
         }
         playerController.LostHealth();
+    }
+    public void CheckAfterDefill()
+    {
+        if (trueFalse)
+        {
+            PlayerMove();
+        }
+        else
+        {
+            ActivePlayer();
+        }
     }
 }

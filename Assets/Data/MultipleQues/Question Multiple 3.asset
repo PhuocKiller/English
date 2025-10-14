@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Question Multiple 3
   m_EditorClassIdentifier: Assembly-CSharp::MultipleSO
   question: How old is she?
-  answerA: nh
+  answerA: n<u>h<u>
   answerB: iu
   answerC: fsd
   answerD: bv

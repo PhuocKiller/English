@@ -7,29 +7,33 @@ public class CheckWinPanel : MonoBehaviour
     public bool trueFalse;
     public UIManager uIManager;
     public int rightAnswers;
+    GameManager gameManager;
 
     private void Awake()
     {
         uIManager=FindAnyObjectByType<UIManager>();
+        gameManager = FindAnyObjectByType<GameManager>();
     }
     public void ShowMessage(int rightAnswers)
     {
         informTMP.text = $"You have {rightAnswers}/4 correct answers";
         this.rightAnswers = rightAnswers;
+        gameManager.trueFalse = rightAnswers == 4;
     }
     public void Continue()
     {
 
-        if (rightAnswers==4)
+        if (rightAnswers == 4)
         {
-            FindAnyObjectByType<GameManager>().PlayerMove();
+          //  FindAnyObjectByType<GameManager>().PlayerMove();
         }
         else
         {
 
-            FindAnyObjectByType<GameManager>().ActivePlayer();
-            FindAnyObjectByType<MatchQuestionPanel>().checkMatch[0].transform.parent.gameObject.SetActive(false);
+          //  FindAnyObjectByType<GameManager>().ActivePlayer();
+            
         }
+        FindAnyObjectByType<MatchQuestionPanel>().checkMatch[0].transform.parent.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
 }

@@ -10,23 +10,11 @@ public class CheckPanel : MonoBehaviour
     public void CheckAnswer(bool trueFalse)
     {
        ShowMessage(trueFalse);
-        this.trueFalse = trueFalse;
+        gameManager.trueFalse = trueFalse;
     }
     public void ShowMessage(bool trueFalse)
     {
         informTMP.text = trueFalse ? "You are right" : "You are wrong";
     }
-    public void Continue()
-    {
-
-       if(trueFalse)
-        {
-            gameManager.PlayerMove();
-        }
-       else
-        {
-            gameManager.ActivePlayer();
-        }
-       gameObject.SetActive(false);
-    }
+    
 }

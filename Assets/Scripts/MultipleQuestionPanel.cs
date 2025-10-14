@@ -15,23 +15,63 @@ public class MultipleQuestionPanel : MonoBehaviour
     public MultipleSO[] multipleSOs;
     public TextMeshProUGUI question,answerA, answerB,answerC,answerD;
     private List<int> multipleQuestions = new List<int>();
+    public bool isFilling, isDeFilling, canShowQuestion;
+    Image image;
+    GameManager gameManager;
     private void Awake()
     {
         uiManager = FindAnyObjectByType<UIManager>();
+        image=GetComponent<Image>();
+        gameManager = FindAnyObjectByType<GameManager>();
     }
     private void OnEnable()
     {
-        LoadQuestion();
-        for (int j = 0; j < buttons.Length; j++)
-        {
-            buttons[j].GetComponent<Button>().interactable = false;
-        }
+        image.fillAmount = 0;
+        canShowQuestion = false;
+        isFilling = true;
+        isDeFilling = false;
+        question.gameObject.SetActive(false);
         answerA.gameObject.SetActive(false);
         answerB.gameObject.SetActive(false);
         answerC.gameObject.SetActive(false);
         answerD.gameObject.SetActive(false);
+        buttons[stuAns].SetColor(Color.white);
+        buttons[checkAns].SetColor(Color.white);
+        for (int j = 0; j < buttons.Length; j++)
+        {
+            buttons[j].GetComponent<Button>().interactable = false;
+        }
     }
-
+    private void Update()
+    {
+        if (!canShowQuestion)
+        {
+            if (isFilling)
+            {
+                image.fillAmount += 0.5f * Time.deltaTime;
+            }
+            if (image.fillAmount >= 1)
+            {
+                isFilling = false;
+                canShowQuestion = true;
+                LoadQuestion();
+            }
+        };
+        if (isDeFilling)
+        {
+            image.fillAmount -= 0.5f * Time.deltaTime;
+            if (image.fillAmount == 0)
+            {
+                isDeFilling = false;
+                gameManager.CheckAfterDefill();
+                gameObject.SetActive(false);
+            }
+        }
+    }
+    public void MakeDeFillingTrue()
+    {
+        isDeFilling=true;   
+    }
     private void LoadQuestion()
     {
         if (multipleQuestions.Count >= multipleSOs.Length)
@@ -47,7 +87,7 @@ public class MultipleQuestionPanel : MonoBehaviour
 
         multipleQuestions.Add(i); // lưu lại để lần sau không trùng
         //question.text = multipleSOs[i].question;
-        
+        question.gameObject.SetActive(true);
         StartCoroutine(ShowTextDelay(question, multipleSOs[i].question,i));
         checkAns = multipleSOs[i].answer;
         stuAns = -1;
@@ -56,6 +96,7 @@ public class MultipleQuestionPanel : MonoBehaviour
             item.isSelected = false; // reset trạng thái logic
             item.SetColor(item.colors.normalColor); // reset màu
         }
+        
     }
     IEnumerator ShowTextDelay(TextMeshProUGUI textTMP, string soText, int i)
     {
@@ -83,7 +124,7 @@ public class MultipleQuestionPanel : MonoBehaviour
     {
         if (stuAns == -1)
         {
-            Debug.Log("error");
+            FindAnyObjectByType<AudioManager>().ErrorSound();
         }
         else
         {

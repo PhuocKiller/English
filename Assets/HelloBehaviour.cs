@@ -8,6 +8,8 @@ public class HelloBehaviour : StateMachineBehaviour
     {
         playerController=animator.gameObject.GetComponent<PlayerController>();
         playerController.canInteract = false;
+        AudioManager audioManager =FindAnyObjectByType<AudioManager>();
+        audioManager.PlayerPlayerSound(audioManager.hello);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

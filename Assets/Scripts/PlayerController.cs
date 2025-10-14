@@ -113,11 +113,11 @@ public class PlayerController : MonoBehaviour
         if (sum == 4) { return QuestionType.Match; }
         else if (sum % 2 == 0)
         {
-            return QuestionType.Multiple;
+            return QuestionType.Fill;
         }
         else
         {
-            return QuestionType.Fill;
+            return QuestionType.Match;
         }
         
     }
@@ -132,6 +132,9 @@ public class PlayerController : MonoBehaviour
         {
             uiManager.winPanelManager.transform.gameObject.SetActive(true);
             FindAnyObjectByType<PlayerController>().animator.SetTrigger("dance");
+            AudioManager audioManager = FindAnyObjectByType<AudioManager>();
+            audioManager.PlayerPlayerSound(audioManager.victory);
+            audioManager.PlayThemeSource(1, 0.2f);
             canInteract=false;
         }
     }

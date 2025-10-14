@@ -16,6 +16,9 @@ public class MatchQuestionPanel : MonoBehaviour
     public Sprite checkSpriteTrue, checkSpriteFalse;
     public CheckWinPanel checkWinPanel;
     public bool canInteract;
+    public bool isFilling, isDeFilling, canShowQuestion;
+    GameManager gameManager;
+    Image image;
     public void SwapAnswer()
     {
         string swapText=sentences[indexSwap1].textSentence.text;
@@ -27,21 +30,56 @@ public class MatchQuestionPanel : MonoBehaviour
     }
     private void Awake()
     {
+        image = GetComponent<Image>();
+        gameManager = FindAnyObjectByType<GameManager>();
     }
     private void OnEnable()
     {
         canInteract = false;
+        image.fillAmount = 0;
+        canShowQuestion = false;
+        isFilling = true;
+        isDeFilling = false;
         for (int j = 0; j < 4; j++)
         {
             leftMatch[j].transform.GetChild(0).gameObject.SetActive(false);
             sentences[j].transform.GetChild(0).gameObject.SetActive(false);
         }
     }
+    private void Update()
+    {
+        if (!canShowQuestion)
+        {
+            if (isFilling)
+            {
+                image.fillAmount += 0.5f * Time.deltaTime;
+            }
+            if (image.fillAmount >= 1)
+            {
+                isFilling = false;
+                canShowQuestion = true;
+            }
+        };
+        if (isDeFilling)
+        {
+            image.fillAmount -= 0.5f * Time.deltaTime;
+            if (image.fillAmount == 0)
+            {
+                isDeFilling = false;
+                gameManager.CheckAfterDefill();
+                gameObject.SetActive(false);
+            }
+        }
+    }
     public void InteractPanel()
     {
-        if (canInteract) return;
+        if (canInteract ||!canShowQuestion) return;
         canInteract = true;
         LoadQuestion();
+    }
+    public void MakeDeFillingTrue()
+    {
+        isDeFilling = true;
     }
     private void LoadQuestion()
     {

@@ -14,6 +14,9 @@ public class FillQuestionPanel : MonoBehaviour
     UIManager uiManager;
     public GameObject checkAnsObject;
     private List<int> fillQuestions = new List<int>();
+    public bool isFilling, isDeFilling, canShowQuestion;
+    Image image;
+    GameManager gameManager;
     public void UpdateAns(string stuAns)
     {
         this.stuAns = stuAns;
@@ -21,12 +24,50 @@ public class FillQuestionPanel : MonoBehaviour
     private void Awake()
     {
         uiManager = FindAnyObjectByType<UIManager>();
+        image = GetComponent<Image>();
+        gameManager = FindAnyObjectByType<GameManager>();
     }
     private void OnEnable()
     {
-        LoadQuestion();
+        image.fillAmount = 0;
+        canShowQuestion = false;
+        isFilling = true;
+        isDeFilling = false;
+        checkAnsObject.SetActive(false);
+        question.gameObject.SetActive(false);
+        imageStuAns.color=Color.white;
+        stuAns = "";
+        imageStuAns.color = Color.white;
+        ansField.DeactivateInputField();
+        ansField.text = "";
+        ansField.ForceLabelUpdate();
     }
-
+    private void Update()
+    {
+        if (!canShowQuestion)
+        {
+            if (isFilling)
+            {
+                image.fillAmount += 0.5f * Time.deltaTime;
+            }
+            if (image.fillAmount >= 1)
+            {
+                isFilling = false;
+                canShowQuestion = true;
+                LoadQuestion();
+            }
+        };
+        if (isDeFilling)
+        {
+            image.fillAmount -= 0.5f * Time.deltaTime;
+            if (image.fillAmount == 0)
+            {
+                isDeFilling = false;
+                gameManager.CheckAfterDefill();
+                gameObject.SetActive(false);
+            }
+        }
+    }
     private void LoadQuestion()
     {
         if (fillQuestions.Count >= fillSOs.Length)
@@ -41,15 +82,11 @@ public class FillQuestionPanel : MonoBehaviour
         while (fillQuestions.Contains(i));
 
         fillQuestions.Add(i); // lưu lại để lần sau không trùng
+        question.gameObject.SetActive(true);
         question.text = fillSOs[i].question;
         checkAns = fillSOs[i].answer;
         checkAnsTMP.text=checkAns;
-        imageStuAns.color = Color.white;
-        checkAnsObject.SetActive(false);
-        stuAns = "";
-        ansField.DeactivateInputField();
-        ansField.text = "";
-        ansField.ForceLabelUpdate();
+        
     }
     public void CheckAnswer()
     {
@@ -77,5 +114,9 @@ public class FillQuestionPanel : MonoBehaviour
             imageStuAns.color = Color.red;
             checkAnsObject.SetActive(true); 
         }
+    }
+    public void MakeDeFillingTrue()
+    {
+        isDeFilling = true;
     }
 }
