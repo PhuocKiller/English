@@ -33,6 +33,5 @@ public class UIManager : MonoBehaviour
     public void ToggleFullScreen()
     {
         Screen.fullScreen = !Screen.fullScreen;
-        Debug.Log("vo");
     }
 }
